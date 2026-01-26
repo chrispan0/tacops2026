@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>...</title>
+    <!--<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">-->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- fullscreen intro in terminal style -->
+    <div id="boot" class="boot">
+        <div class="boot-inner">
+            <div class="status" id="statusText">Loading</div>
+
+            <div class="boot-ellipsis" id="bootDots"></div>
+
+            <div class="bar">
+                <div class="bar-fill" id="barFill"></div>
+            </div>
+
+            <div class="granted hidden" id="granted">
+                <span class="warn-icon" aria-hidden="true">
+                    <span class="triangle"></span>
+                    <span class="bang">!</span>
+                </span>
+                <span class="granted-text">ACCESS GRANTED</span>
+            </div>
+
+            <pre class="code" id="codeArea" aria-label="terminal output"></pre>
+        </div>
+    </div>
+
+    <!-- final titlel -->
+    <main class="final hidden" id="final">
+        <h1 class="final-title">TACOPS 2026 COMING SOON</h1>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
