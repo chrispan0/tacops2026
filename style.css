@@ -265,7 +265,7 @@ body::before {
 }
 
 /* Mobile tweaks */
-@media (max-width: 480px) {
+@media /* (max-width: 480px)*/ {
   .boot {
     padding: 16px;
   }
@@ -321,5 +321,6 @@ body::before {
     letter-spacing: 0.25em;
   }
 }
+
 
 
