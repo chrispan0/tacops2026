@@ -51,7 +51,7 @@ body::before {
     box-shadow: 0 0 24px rgba(0,255,102,0.10);
     background: rgba(0,0,0,0.55);
     backdrop-filter: blur(2px);
-    max-height: 30vh;
+    /* max-height: 30vh; */
     overflow: hidden;
 }
 
@@ -322,6 +322,7 @@ body::before {
     letter-spacing: 0.25em;
   }
 }
+
 
 
 
