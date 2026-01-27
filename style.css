@@ -264,63 +264,8 @@ body::before {
     animation: fadeIn 1200ms ease forwards, microGlitch 1200ms ease 1;
 }
 
-/* Mobile tweaks */
-@media (max-width: 480px) {
-  .boot {
-    padding: 16px;
-  }
 
-  .boot-inner {
-    width: 100%;
-    padding: 18px 14px;
-    border-radius: 14px;
-  }
 
-  .status {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
-  }
-
-  .boot-ellipsis {
-    font-size: 16px;
-    margin: 6px 0 12px;
-  }
-
-  .bar {
-    height: 12px;
-  }
-
-  .granted {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    gap: 8px;
-  }
-
-  .code {
-    font-size: 12px;
-    line-height: 1.4;
-    min-height: 120px;
-    word-break: break-word;
-    overflow-wrap: anywhere;
-  }
-
-  .final {
-    padding: 18px;
-  }
-
-  .final-title {
-    letter-spacing: 0.12em;
-    font-size: clamp(1.6rem, 8vw, 3rem);
-    line-height: 1.25;
-    padding: 0 6px;
-  }
-
-  .ellipsis {
-    font-size: 1.6rem;
-    letter-spacing: 0.25em;
-  }
-}
 
 
 
