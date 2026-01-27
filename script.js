@@ -126,7 +126,6 @@ async function runSequence() {
         ">> loading assets: trailer_v1.mp4",
         ">> sync clock: ntp_offset=+0.004s",
         ">> permissions: operator_level=5",
-        ">> launch sequence: READY",
         ">> all systems nominal. welcome, operator."
     ];
 
@@ -186,3 +185,4 @@ async function runSequence() {
 }
 
 runSequence();
+
