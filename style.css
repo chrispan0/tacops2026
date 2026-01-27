@@ -52,7 +52,7 @@ body::before {
     background: rgba(0,0,0,0.55);
     backdrop-filter: blur(2px);
     /* max-height: 30vh; */
-    overflow: hidden;
+    overflow: visible;
 }
 
 .status {
@@ -301,7 +301,7 @@ body::before {
   .code {
     font-size: 12px;
     line-height: 1.4;
-    min-height: 120px;
+    min-height: 160px;
     word-break: break-word;
     overflow-wrap: anywhere;
   }
@@ -322,6 +322,7 @@ body::before {
     letter-spacing: 0.25em;
   }
 }
+
 
 
 
