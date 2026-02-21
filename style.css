@@ -4,7 +4,8 @@
     --green-dim: rgba(0,255,102,0.35);
     --green-dimmer: rgba(0,255,102,0.18);
     --text: rgba(0,255,102,0.92);
-    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --terminal: 'VT323', 'IBM Plex Mono', monospace;
 }
 
 * {
@@ -16,11 +17,119 @@ html, body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: var(--mono);
+    font-family: var(--terminal);
+    font-size: 18px;
 }
 
 .hidden {
     display: none !important;
+}
+
+/* Boot Screen Logo */
+.boot-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 30px;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(0,255,102,0.6));
+    animation: boot-spin 3s ease-in-out infinite;
+}
+
+@keyframes boot-spin {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(360deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Navbar Logo */
+.nav-logo {
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 8px rgba(0,255,102,0.4));
+    animation: nav-spin 6s ease-in-out infinite;
+}
+
+@keyframes nav-spin {
+    0% { transform: rotate(0deg); }
+    12% { transform: rotate(360deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 2px solid var(--green);
+    padding: 0;
+    box-shadow: 0 2px 12px rgba(0,255,102,0.3);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.navbar.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    font-family: var(--terminal);
+    font-size: 1.8rem;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 20px rgba(0,255,102,0.4);
+    transition: text-shadow 0.3s ease;
+}
+
+.nav-brand:hover {
+    text-shadow: 0 0 30px rgba(0,255,102,0.6);
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    font-family: var(--terminal);
+    color: rgba(0,255,102,0.8);
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--green);
+    border: 1px solid var(--green-dimmer);
+    background: rgba(0,255,102,0.05);
+    box-shadow: 0 0 15px rgba(0,255,102,0.2);
+}
+
+.nav-links a.active {
+    color: var(--green);
+    border: 1px solid var(--green-dim);
+    background: rgba(0,255,102,0.08);
 }
 
 /* Subtle terminal glow + scanlines */
@@ -149,27 +258,203 @@ body::before {
 .final {
     position: fixed;
     inset: 0;
-    display: grid;
-    place-items: center;
-    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 24px 24px 24px;
+    gap: 48px;
 }
 
 .final-title {
     margin: 0;
     text-align: center;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    letter-spacing: 0.18em;
+    font-family: var(--terminal);
+    font-weight: 400;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--green);
     text-shadow: 0 0 28px rgba(0,255,102,0.3);
-    opacity: 0;
-    transform: translateY(10px);
     opacity: 1;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(3rem, 8vw, 5.5rem);
     position: relative;
-    line-height: 1.25;
+    line-height: 1.15;
     white-space: pre-line;
+}
+
+.event-details {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    border: 1px solid var(--green-dimmer);
+    border-radius: 12px;
+    padding: 32px 40px;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 32px rgba(0,255,102,0.12), inset 0 0 24px rgba(0,255,102,0.04);
+    max-width: 600px;
+    width: 100%;
+}
+
+.event-details.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.detail-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 20px;
+    font-family: var(--mono);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+.detail-line:last-child {
+    margin-bottom: 0;
+}
+
+.detail-line .label {
+    color: var(--green);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    flex-shrink: 0;
+}
+
+.detail-line .value {
+    color: rgba(0,255,102,0.95);
+    text-align: right;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 12px rgba(0,255,102,0.2);
+}
+
+.map-container {
+    margin-top: 28px;
+    border: 1px solid var(--green-dimmer);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 350px;
+    position: relative;
+    box-shadow: 0 0 24px rgba(0,255,102,0.15), inset 0 0 16px rgba(0,255,102,0.06);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+}
+
+.event-details.visible .map-container {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    filter: hue-rotate(90deg) saturate(0.7) brightness(0.8);
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+#map:hover {
+    filter: hue-rotate(90deg) saturate(0.85) brightness(0.9);
+}
+
+.map-overlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.85);
+    border: 1px solid var(--green-dimmer);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 0 16px rgba(0,255,102,0.2);
+}
+
+.map-label {
+    color: var(--green);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4px;
+    opacity: 0.9;
+}
+
+.map-coords {
+    color: rgba(0,255,102,0.85);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    font-family: var(--mono);
+}
+
+.map-hint {
+    color: rgba(0,255,102,0.7);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Sign Up Button */
+.signup-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+    padding: 20px 40px;
+    background: transparent;
+    border: 2px solid var(--green);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    box-shadow: 0 0 20px rgba(0,255,102,0.15);
+}
+
+.event-details.visible .signup-btn {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-btn:hover {
+    background: var(--green);
+    box-shadow: 0 0 35px rgba(0,255,102,0.5);
+}
+
+.btn-text {
+    font-family: var(--terminal);
+    font-size: 1.6rem;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.signup-btn:hover .btn-text {
+    color: var(--bg);
+}
+
+.btn-subtext {
+    font-family: var(--terminal);
+    font-size: 1rem;
+    color: rgba(0,255,102,0.8);
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+    transition: color 0.3s ease;
+}
+
+.signup-btn:hover .btn-subtext {
+    color: rgba(0,0,0,0.8);
 }
 
 .ellipsis {
@@ -267,6 +552,18 @@ body::before {
 
 /* Mobile tweaks */
 @media (max-width: 480px) {
+  .boot-logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+
+  .nav-logo {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+  }
+
   .boot {
     padding: 16px;
   }
@@ -308,6 +605,7 @@ body::before {
 
   .final {
     padding: 18px;
+    gap: 32px;
   }
 
   .final-title {
@@ -315,6 +613,59 @@ body::before {
     font-size: clamp(1.6rem, 8vw, 3rem);
     line-height: 1.25;
     padding: 0 6px;
+  }
+
+  .event-details {
+    padding: 24px 20px;
+    border-radius: 10px;
+    max-width: 100%;
+  }
+
+  .detail-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+  }
+
+  .detail-line .value {
+    text-align: left;
+    padding-left: 12px;
+  }
+
+  .map-container {
+    height: 280px;
+    margin-top: 20px;
+  }
+
+  .map-overlay {
+    top: 8px;
+    left: 8px;
+    padding: 6px 10px;
+    font-size: 0.65rem;
+  }
+
+  .map-coords {
+    font-size: 0.6rem;
+  }
+
+  .map-hint {
+    font-size: 0.58rem;
+    margin-top: 4px;
+  }
+
+  .signup-btn {
+    margin-top: 24px;
+    padding: 16px 30px;
+  }
+
+  .btn-text {
+    font-size: 1.3rem;
+  }
+
+  .btn-subtext {
+    font-size: 0.9rem;
   }
 
   .ellipsis {

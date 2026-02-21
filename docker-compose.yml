@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  tacops-website:
+    build: .
+    container_name: tacops2026
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    volumes:
+      # Optional: mount for development (comment out for production)
+      # - ./:/usr/share/nginx/html:ro
+    networks:
+      - tacops-network
+
+networks:
+  tacops-network:
+    driver: bridge

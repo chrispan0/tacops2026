@@ -1,0 +1,720 @@
+:root {
+    --bg: #000000;
+    --green: #00ff66;
+    --green-dim: rgba(0,255,102,0.35);
+    --green-dimmer: rgba(0,255,102,0.18);
+    --text: rgba(0,255,102,0.92);
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --terminal: 'VT323', 'IBM Plex Mono', monospace;
+    --gold: #ffd700;
+    --silver: #c0c0c0;
+    --bronze: #cd7f32;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--terminal);
+    font-size: 18px;
+    overflow-x: hidden;
+}
+
+/* Subtle terminal glow + scanlines */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 40%, rgba(0,255,102,0.08), transparent 55%), repeating-linear-gradient( to bottom, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 3px );
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.45;
+    z-index: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Jackpot Logo */
+.jackpot-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: block;
+    filter: drop-shadow(0 0 15px rgba(0,255,102,0.6));
+    animation: jackpot-spin 4s ease-in-out infinite;
+}
+
+@keyframes jackpot-spin {
+    0% { transform: rotate(0deg); }
+    18% { transform: rotate(360deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Navbar Logo */
+.nav-logo {
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 8px rgba(0,255,102,0.4));
+    animation: nav-spin 6s ease-in-out infinite;
+}
+
+@keyframes nav-spin {
+    0% { transform: rotate(0deg); }
+    12% { transform: rotate(360deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Navigation Bar */
+.navbar {
+    background: var(--bg);
+    border-bottom: 2px solid var(--green);
+    padding: 0;
+    box-shadow: 0 2px 12px rgba(0,255,102,0.3);
+    position: relative;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    font-family: var(--terminal);
+    font-size: 1.8rem;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 20px rgba(0,255,102,0.4);
+    transition: text-shadow 0.3s ease;
+}
+
+.nav-brand:hover {
+    text-shadow: 0 0 30px rgba(0,255,102,0.6);
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    font-family: var(--terminal);
+    color: rgba(0,255,102,0.8);
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--green);
+    border: 1px solid var(--green-dimmer);
+    background: rgba(0,255,102,0.05);
+    box-shadow: 0 0 15px rgba(0,255,102,0.2);
+}
+
+.nav-links a.active {
+    color: var(--green);
+    border: 1px solid var(--green-dim);
+    background: rgba(0,255,102,0.08);
+}
+
+/* Slot Machine Container */
+.slot-machine-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: 20px;
+}
+
+.slot-machine {
+    text-align: center;
+}
+
+.slot-title {
+    font-family: var(--terminal);
+    font-size: 2rem;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(0,255,102,0.5);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.slots-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.slot-frame {
+    display: inline-block;
+}
+
+.slot-border {
+    font-family: var(--terminal);
+    font-size: 1.8rem;
+    color: var(--green);
+    line-height: 1.3;
+    text-shadow: 0 0 15px rgba(0,255,102,0.3);
+    margin: 0;
+}
+
+.reel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--green);
+    min-width: 3ch;
+    text-align: center;
+}
+
+.reel .material-icons {
+    font-size: 2.8rem;
+}
+
+.slot-status {
+    font-family: var(--terminal);
+    font-size: 1.5rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    margin-top: 25px;
+    text-shadow: 0 0 15px rgba(0,255,102,0.4);
+}
+
+/* Prizes Content */
+.prizes-content {
+    position: relative;
+    z-index: 1;
+    padding: 100px 20px 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.prizes-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Terminal Window */
+.terminal-window {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 2px solid var(--green);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.9);
+    box-shadow: 0 0 40px rgba(0,255,102,0.3), inset 0 0 30px rgba(0,255,102,0.06);
+    overflow: hidden;
+}
+
+.terminal-header {
+    background: rgba(0,255,102,0.12);
+    border-bottom: 1px solid var(--green-dim);
+    padding: 12px 20px;
+}
+
+.prizes-content .terminal-header {
+    background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(0,255,102,0.1));
+    border-bottom: 1px solid rgba(255,215,0,0.3);
+}
+
+.terminal-title {
+    font-family: var(--terminal);
+    font-size: 1.1rem;
+    color: var(--green);
+    letter-spacing: 0.05em;
+}
+
+.terminal-content {
+    padding: 40px;
+}
+
+.prizes-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.prizes-title {
+    font-family: var(--terminal);
+    font-size: 3rem;
+    color: var(--green);
+    text-align: center;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 30px rgba(0,255,102,0.5);
+}
+
+.prize-announcement {
+    font-family: var(--terminal);
+    font-size: 2rem;
+    color: var(--gold);
+    text-align: center;
+    margin: 20px 0 30px;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 25px rgba(255,215,0,0.6);
+    animation: jackpotBlink 1s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.announcement-icon {
+    font-size: 2.5rem !important;
+}
+
+.eligibility-note {
+    background: rgba(0,255,102,0.08);
+    border: 2px solid var(--green-dim);
+    border-radius: 8px;
+    padding: 20px 25px;
+    margin: 30px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.eligibility-note .info-icon {
+    font-size: 2rem;
+    color: var(--green);
+    flex-shrink: 0;
+}
+
+.eligibility-note p {
+    font-family: var(--terminal);
+    font-size: 1.2rem;
+    color: rgba(0,255,102,0.9);
+    margin: 0;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+}
+
+.eligibility-note strong {
+    color: var(--green);
+    text-shadow: 0 0 10px rgba(0,255,102,0.3);
+}
+
+.prize-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin: 40px 0;
+}
+
+@keyframes jackpotBlink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.prize-section {
+    margin: 40px 0;
+}
+
+.section-title {
+    font-family: var(--terminal);
+    font-size: 1.8rem;
+    color: var(--green);
+    letter-spacing: 0.12em;
+    margin: 0 0 25px 0;
+    text-shadow: 0 0 20px rgba(0,255,102,0.4);
+    border-bottom: 2px solid var(--green-dim);
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.title-icon {
+    font-size: 2rem !important;
+}
+
+/* Prize Table */
+.prize-table-wrapper {
+    overflow-x: auto;
+    border: 2px solid var(--green);
+    border-radius: 8px;
+    background: rgba(0,255,102,0.03);
+    box-shadow: 0 0 30px rgba(0,255,102,0.15);
+}
+
+.prize-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--terminal);
+}
+
+.prize-table thead {
+    background: rgba(0,255,102,0.15);
+}
+
+.prize-table th {
+    padding: 20px;
+    text-align: left;
+    font-size: 1.3rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid var(--green);
+}
+
+.prize-table td {
+    padding: 18px 20px;
+    font-size: 1.2rem;
+    color: rgba(0,255,102,0.85);
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--green-dimmer);
+}
+
+.prize-table td:first-child {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.place-icon {
+    font-size: 1.8rem !important;
+}
+
+.place-icon.gold {
+    color: var(--gold);
+}
+
+.place-icon.silver {
+    color: var(--silver);
+}
+
+.place-icon.bronze {
+    color: var(--bronze);
+}
+
+.prize-row {
+    transition: all 0.3s ease;
+}
+
+.prize-row:hover {
+    background: rgba(0,255,102,0.08);
+}
+
+.prize-row:last-child td {
+    border-bottom: none;
+}
+
+.amount {
+    font-weight: 700;
+    color: var(--green);
+    text-shadow: 0 0 10px rgba(0,255,102,0.3);
+    font-size: 1.4rem !important;
+}
+
+/* Special highlights for top 3 */
+.first-place {
+    background: rgba(255,215,0,0.05);
+}
+
+.first-place:hover {
+    background: rgba(255,215,0,0.1);
+}
+
+.first-place .amount {
+    color: var(--gold);
+    text-shadow: 0 0 15px rgba(255,215,0,0.5);
+}
+
+.second-place {
+    background: rgba(192,192,192,0.03);
+}
+
+.second-place:hover {
+    background: rgba(192,192,192,0.06);
+}
+
+.second-place .amount {
+    color: var(--silver);
+    text-shadow: 0 0 12px rgba(192,192,192,0.4);
+}
+
+.third-place {
+    background: rgba(205,127,50,0.03);
+}
+
+.third-place:hover {
+    background: rgba(205,127,50,0.06);
+}
+
+.third-place .amount {
+    color: var(--bronze);
+    text-shadow: 0 0 12px rgba(205,127,50,0.4);
+}
+
+.category-total {
+    font-family: var(--terminal);
+    font-size: 1.3rem;
+    color: var(--green);
+    font-weight: 700;
+    text-align: right;
+    margin-top: 15px;
+    padding-right: 20px;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 15px rgba(0,255,102,0.3);
+}
+
+.divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green-dim), transparent);
+    margin: 50px 0;
+}
+
+/* Raffle Section */
+.raffle-section {
+    text-align: center;
+}
+
+.raffle-subtitle {
+    font-family: var(--terminal);
+    font-size: 1.2rem;
+    color: rgba(0,255,102,0.7);
+    margin: -10px 0 30px;
+    letter-spacing: 0.05em;
+    font-style: italic;
+}
+
+.raffle-items {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.raffle-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    padding: 30px;
+    border: 2px solid var(--green-dim);
+    border-radius: 12px;
+    background: rgba(0,255,102,0.05);
+    transition: all 0.3s ease;
+}
+
+.raffle-item:hover {
+    border-color: var(--green);
+    background: rgba(0,255,102,0.1);
+    box-shadow: 0 0 30px rgba(0,255,102,0.25);
+    transform: translateY(-5px);
+}
+
+.raffle-icon {
+    font-size: 4rem !important;
+    margin-bottom: 15px;
+    color: var(--green);
+}
+
+.raffle-name {
+    font-family: var(--terminal);
+    font-size: 1.5rem;
+    color: var(--green);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+}
+
+.raffle-desc {
+    font-family: var(--terminal);
+    font-size: 1.1rem;
+    color: rgba(0,255,102,0.7);
+    letter-spacing: 0.05em;
+}
+
+/* Footer Note */
+.footer-note {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 2px solid var(--green-dim);
+}
+
+.footer-note p {
+    font-family: var(--terminal);
+    font-size: 1.3rem;
+    color: rgba(0,255,102,0.8);
+    margin: 15px 0;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.footer-icon {
+    font-size: 1.8rem !important;
+    color: var(--gold);
+}
+
+.good-luck {
+    font-size: 1.8rem !important;
+    color: var(--green) !important;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 20px rgba(0,255,102,0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .jackpot-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+
+    .nav-logo {
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 16px;
+        padding: 12px 16px;
+    }
+
+    .nav-brand {
+        font-size: 1.5rem;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+        padding: 6px 10px;
+    }
+
+    .slot-title {
+        font-size: 1.5rem;
+    }
+
+    .slot-border {
+        font-size: 1.2rem;
+    }
+
+    .reel {
+        font-size: 1.8rem;
+    }
+
+    .slot-status {
+        font-size: 1.2rem;
+    }
+
+    .prizes-content {
+        padding: 80px 15px 40px;
+    }
+
+    .terminal-window {
+        border-radius: 6px;
+    }
+
+    .terminal-content {
+        padding: 25px 20px;
+    }
+
+    .prizes-title {
+        font-size: 2rem;
+    }
+
+    .prize-announcement {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .prize-categories {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .prize-table th {
+        padding: 15px 10px;
+        font-size: 1.1rem;
+    }
+
+    .prize-table td {
+        padding: 12px 10px;
+        font-size: 1rem;
+    }
+
+    .amount {
+        font-size: 1.2rem !important;
+    }
+
+    .raffle-items {
+        gap: 20px;
+    }
+
+    .raffle-item {
+        min-width: 100%;
+        padding: 25px;
+    }
+
+    .raffle-icon {
+        font-size: 2.5rem;
+    }
+
+    .raffle-name {
+        font-size: 1.3rem;
+    }
+
+    .raffle-desc {
+        font-size: 1rem;
+    }
+
+    .footer-note p {
+        font-size: 1.1rem;
+    }
+
+    .good-luck {
+        font-size: 1.4rem !important;
+    }
+}

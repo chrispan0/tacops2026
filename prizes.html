@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prizes - TacOps 2026</title>
+    <link rel="icon" type="image/png" href="media/logos/netsoc.png">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="prizes.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="media/logos/netsoc.png" alt="NetSoc" class="nav-logo">
+                TACOPS 2026
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="registration.html">Registration</a>
+                <a href="prizes.html" class="active">Prizes</a>
+                <a href="transportation.html">Transportation</a>
+                <a href="sponsors.html">Sponsors</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slot Machine Animation -->
+    <div class="slot-machine-container" id="slotMachine">
+        <div class="slot-machine">
+            <img src="media/logos/netsoc.png" alt="NetSoc" class="jackpot-logo">
+            <div class="slot-title">JACKPOT LOADING...</div>
+            <div class="slots-wrapper">
+                <div class="slot-frame">
+                    <pre class="slot-border">
+╔═══════════════════════════════════╗
+║   ┌─────┐   ┌─────┐   ┌─────┐   ║
+║   │     │   │     │   │     │   ║
+║   │ <span id="reel1" class="reel"><span class="material-icons">help_outline</span></span> │   │ <span id="reel2" class="reel"><span class="material-icons">help_outline</span></span> │   │ <span id="reel3" class="reel"><span class="material-icons">help_outline</span></span> │   ║
+║   │     │   │     │   │     │   ║
+║   └─────┘   └─────┘   └─────┘   ║
+╚═══════════════════════════════════╝
+                    </pre>
+                </div>
+            </div>
+            <div class="slot-status" id="slotStatus">SPINNING...</div>
+        </div>
+    </div>
+
+    <!-- Prizes Content (hidden initially) -->
+    <div class="prizes-content hidden" id="prizesContent">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-title">ctf@tacops:/prizes$</span>
+            </div>
+            <div class="terminal-content">
+                <h1 class="prizes-title">PRIZE POOL</h1>
+                <div class="prize-announcement">
+                    <span class="material-icons announcement-icon">emoji_events</span>
+                    JACKPOT!
+                    <span class="material-icons announcement-icon">emoji_events</span>
+                </div>
+            
+            <div class="eligibility-note">
+                <span class="material-icons info-icon">info</span>
+                <p><strong>Note:</strong> Ontario Tech University competitors are eligible to win prizes in BOTH the Open Team and OTU Team categories!</p>
+            </div>
+
+            <div class="prize-categories">
+                <div class="prize-section">
+                    <h2 class="section-title">
+                        <span class="material-icons title-icon">public</span>
+                        OPEN TEAM PRIZES
+                    </h2>
+                    <div class="prize-table-wrapper">
+                        <table class="prize-table">
+                            <thead>
+                                <tr>
+                                    <th>PLACE</th>
+                                    <th>AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="prize-row first-place">
+                                    <td>
+                                        <span class="material-icons place-icon gold">military_tech</span>
+                                        1st Place
+                                    </td>
+                                    <td class="amount">$2,000.00 CAD</td>
+                                </tr>
+                                <tr class="prize-row second-place">
+                                    <td>
+                                        <span class="material-icons place-icon silver">military_tech</span>
+                                        2nd Place
+                                    </td>
+                                    <td class="amount">$1,000.00 CAD</td>
+                                </tr>
+                                <tr class="prize-row third-place">
+                                    <td>
+                                        <span class="material-icons place-icon bronze">military_tech</span>
+                                        3rd Place
+                                    </td>
+                                    <td class="amount">$500.00 CAD</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="category-total">Total: $3,500.00 CAD</div>
+                </div>
+
+                <div class="prize-section">
+                    <h2 class="section-title">
+                        <span class="material-icons title-icon">school</span>
+                        OTU TEAM PRIZES
+                    </h2>
+                    <div class="prize-table-wrapper">
+                        <table class="prize-table">
+                            <thead>
+                                <tr>
+                                    <th>PLACE</th>
+                                    <th>AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="prize-row">
+                                    <td>
+                                        <span class="material-icons place-icon">military_tech</span>
+                                        1st Place
+                                    </td>
+                                    <td class="amount">$500.00 CAD</td>
+                                </tr>
+                                <tr class="prize-row">
+                                    <td>
+                                        <span class="material-icons place-icon">military_tech</span>
+                                        2nd Place
+                                    </td>
+                                    <td class="amount">$250.00 CAD</td>
+                                </tr>
+                                <tr class="prize-row">
+                                    <td>
+                                        <span class="material-icons place-icon">military_tech</span>
+                                        3rd Place
+                                    </td>
+                                    <td class="amount">$100.00 CAD</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="category-total">Total: $850.00 CAD</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="prize-section raffle-section">
+                <h2 class="section-title">
+                    <span class="material-icons title-icon">confirmation_number</span>
+                    RAFFLE PRIZES
+                </h2>
+                <p class="raffle-subtitle">Random drawings throughout the event</p>
+                <div class="raffle-items">
+                    <div class="raffle-item">
+                        <span class="material-icons raffle-icon">vpn_key</span>
+                        <div class="raffle-name">1Password</div>
+                        <div class="raffle-desc">1 Year Subscription</div>
+                    </div>
+                    <div class="raffle-item">
+                        <span class="material-icons raffle-icon">credit_card</span>
+                        <div class="raffle-name">Visa Gift Cards</div>
+                        <div class="raffle-desc">Various Amounts</div>
+                    </div>
+                    <div class="raffle-item">
+                        <span class="material-icons raffle-icon">checkroom</span>
+                        <div class="raffle-name">Netsoc Hoodie</div>
+                        <div class="raffle-desc">Official Merch</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-note">
+                <p>
+                    <span class="material-icons footer-icon">emoji_events</span>
+                    Total Prize Pool: $4,350+ CAD
+                    <span class="material-icons footer-icon">emoji_events</span>
+                </p>
+                <p class="good-luck">GOOD LUCK, HACKERS!</p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="prizes.js"></script>
+</body>
+</html>

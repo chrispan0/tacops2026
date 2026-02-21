@@ -3,14 +3,34 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>...</title>
-    <!--<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">-->
+    <title>TacOps 2026</title>
+    <link rel="icon" type="image/png" href="media/logos/netsoc.png">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar hidden" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="media/logos/netsoc.png" alt="NetSoc" class="nav-logo">
+                TACOPS 2026
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="registration.html">Registration</a>
+                <a href="prizes.html">Prizes</a>
+                <a href="transportation.html">Transportation</a>
+                <a href="sponsors.html">Sponsors</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- fullscreen intro in terminal style -->
     <div id="boot" class="boot">
         <div class="boot-inner">
+            <img src="media/logos/netsoc.png" alt="NetSoc" class="boot-logo">
             <div class="status" id="statusText">Loading</div>
 
             <div class="boot-ellipsis" id="bootDots"></div>
@@ -33,9 +53,36 @@
 
     <!-- final titlel -->
     <main class="final hidden" id="final">
-        <h1 class="final-title">TACOPS 2026 COMING SOON</h1>
+        <h1 class="final-title">TACOPS 2026</h1>
+        <div class="event-details" id="eventDetails">
+            <div class="detail-line dates">
+                <span class="label">DATES:</span>
+                <span class="value">March 28th & 29th</span>
+            </div>
+            <div class="detail-line time">
+                <span class="label">TIME:</span>
+                <span class="value">11:00 AM - 5:00 PM</span>
+            </div>
+            <div class="detail-line location">
+                <span class="label">LOCATION:</span>
+                <span class="value">Ontario Tech University - BIT 2080</span>
+            </div>
+            <div class="map-container" id="mapContainer">
+                <div id="map"></div>
+                <div class="map-overlay">
+                    <div class="map-label">TARGET COORDINATES</div>
+                    <div class="map-coords">43.945062, -78.895891</div>
+                    <div class="map-hint">Click for campus map →</div>
+                </div>
+            </div>
+            <a href="registration.html" class="signup-btn" id="signupBtn">
+                <span class="btn-text">SIGN UP HERE</span>
+                <span class="btn-subtext">(Limited Spots)</span>
+            </a>
+        </div>
     </main>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
